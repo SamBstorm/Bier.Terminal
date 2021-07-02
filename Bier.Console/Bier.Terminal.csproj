@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Bier.Terminal</AssemblyName>
+    <RootNamespace>Bier.Terminal</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bier.DataBase\Bier.Models\Bier.Models.csproj" />
+    <ProjectReference Include="..\Bier.ServicesAPI\Bier.ServicesAPI.csproj" />
+  </ItemGroup>
+
+</Project>
