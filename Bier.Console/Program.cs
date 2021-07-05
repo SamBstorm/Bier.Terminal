@@ -15,10 +15,13 @@ namespace Bier.Terminal
             Console.WriteLine("Hello World!");
             DrinkRepository repo = new DrinkRepository();
 
-            Drink drink = new Drink() { Name = "Chimay", AlcoholIntensity = 8, Color = DrinkColors.Brown, Type = DrinkTypes.Trappist, BrewerId = 1 };
-            drink = repo.Insert(drink);
+            //Drink drink = new Drink() { Name = "Chimay", AlcoholIntensity = 8, Color = DrinkColors.Brown, Type = DrinkTypes.Trappist, BrewerId = 1 };
+            //drink = repo.Insert(drink);
 
-            Console.WriteLine(drink.Id);
+            //Console.WriteLine(drink.Id);
+
+            UserRepository userRepo = new UserRepository();
+            userRepo.Login("samuel.legrain@bstorm.be", "test1234=");
 
             IEnumerable<Drink> drinks = repo.Get();
             foreach (Drink d in drinks)

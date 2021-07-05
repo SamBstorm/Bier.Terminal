@@ -32,11 +32,17 @@ namespace Bier.ServicesAPI.Bases
             responseTask.Wait();
             return responseTask.Result;
         }
-        private HttpResponseMessage GetResponseMessage(Func<string, HttpContent, Task<HttpResponseMessage>> func, HttpContent content)
+        protected HttpResponseMessage GetResponseMessage(Func<string, HttpContent, Task<HttpResponseMessage>> func, HttpContent content)
         {
             Task<HttpResponseMessage> responseTask = func(route, content);
             responseTask.Wait();
             return responseTask.Result;
+        }
+        protected string GetJsonContent(HttpResponseMessage response)
+        {
+            Task<string> content = response.Content.ReadAsStringAsync();
+            content.Wait();
+            return content.Result;
         }
     }
 }

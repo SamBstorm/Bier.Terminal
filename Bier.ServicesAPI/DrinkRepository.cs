@@ -17,16 +17,7 @@ namespace Bier.ServicesAPI
         {
         }
 
-       
-
-        
-
-        private string GetJsonContent(HttpResponseMessage response)
-        {
-            Task<string> content = response.Content.ReadAsStringAsync();
-            content.Wait();
-            return content.Result;
-        }
+        public HttpClient GetHttpClient() { return base.CreateHttpClient(Environment.token); }
 
         public Drink Delete(int id)
         {
@@ -35,7 +26,7 @@ namespace Bier.ServicesAPI
 
         public IEnumerable<Drink> Get()
         {
-            using (HttpClient client = CreateHttpClient())
+            using (HttpClient client = GetHttpClient())
             {
                 HttpResponseMessage response = GetResponseMessage(client.GetAsync);
                 if (!response.IsSuccessStatusCode) throw new HttpRequestException();
@@ -52,7 +43,7 @@ namespace Bier.ServicesAPI
         public Drink Insert(Drink entity)
         {
             JsonContent entityJson = JsonContent.Create(entity);
-            using (HttpClient client = CreateHttpClient())
+            using (HttpClient client = CreateHttpClient(Environment.token))
             {
                 HttpResponseMessage response = GetResponseMessage(client.PostAsync, entityJson);
                 if(!response.IsSuccessStatusCode) throw new HttpRequestException();
